@@ -28,3 +28,9 @@
  */
 
 export default getTotalVoters;
+
+function getTotalVoters(votersList) {
+  return votersList.reduce((totalVoters, voter) => {
+    return voter.hasVoted ? totalVoters + 1 : totalVoters;
+  }, 0);
+}
