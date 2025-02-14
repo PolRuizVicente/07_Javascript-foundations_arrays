@@ -1,3 +1,6 @@
+import { customersWhoBelongToMembership } from "./customersWhoBelongToMembership";
+import { describe, it, expect } from "vitest";
+
 const EMPTY_CUSTOMERS_LIST = [];
 
 const CUSTOMERS_LIST = [
@@ -20,11 +23,51 @@ const CUSTOMERS_LIST_WITH_ALL_MEMBERS = [
 ];
 
 describe("customersWhoBelongToMembership", () => {
-  it.todo("should return only customers who are members");
+  it("should return an empty array when given an empty customers list", () => {
+    // Arrange
+    const customersList = EMPTY_CUSTOMERS_LIST;
 
-  it.todo("should handle an empty array");
+    // Act
+    const result = customersWhoBelongToMembership(customersList);
 
-  it.todo("should handle an array with no members");
+    // Assert
+    expect(result).toEqual([]);
+  });
 
-  it.todo("should handle an array with all members");
+  it("should return only the customers who are members", () => {
+    // Arrange
+    const customersList = CUSTOMERS_LIST;
+
+    // Act
+    const result = customersWhoBelongToMembership(customersList);
+
+    // Assert
+    expect(result).toEqual([
+      { name: "Foo", isMember: true },
+      { name: "Fizz", isMember: true },
+      { name: "FizzBuzz", isMember: true },
+    ]);
+  });
+
+  it("should return an empty array when no customers are members", () => {
+    // Arrange
+    const customersList = CUSTOMERS_LIST_WITH_NO_MEMBERS;
+
+    // Act
+    const result = customersWhoBelongToMembership(customersList);
+
+    // Assert
+    expect(result).toEqual([]);
+  });
+
+  it("should return all customers when all are members", () => {
+    // Arrange
+    const customersList = CUSTOMERS_LIST_WITH_ALL_MEMBERS;
+
+    // Act
+    const result = customersWhoBelongToMembership(customersList);
+
+    // Assert
+    expect(result).toEqual(CUSTOMERS_LIST_WITH_ALL_MEMBERS);
+  });
 });
