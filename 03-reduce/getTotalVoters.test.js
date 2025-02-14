@@ -1,3 +1,6 @@
+import  getTotalVoters  from "./getTotalVoters";
+import { describe, it, expect } from "vitest";
+
 const VOTERS = [
   { name: "Bob", age: 30, hasVoted: true },
   { name: "Jake", age: 32, hasVoted: true },
@@ -36,15 +39,69 @@ const EMPTY_VOTERS = [];
 const SINGLE_NON_VOTER = [{ name: "Kate", age: 25, hasVoted: false }];
 
 describe("getTotalVoters", () => {
-  it.todo("should return the correct number of voters");
+  it("should return the correct number of voters", () => {
+    // Arrange
+    const votersList = VOTERS;
 
-  it.todo("should return 0 when no one has voted");
+    // Act
+    const result = getTotalVoters(votersList);
 
-  it.todo("should return the correct number when all have voted");
+    // Assert
+    expect(result).toBe(7);
+  });
 
-  it.todo("should handle an empty array");
+  it("should return 0 when no one has voted", () => {
+    // Arrange
+    const votersList = NO_VOTERS;
 
-  it.todo("should handle an array with one voter who has voted");
+    // Act
+    const result = getTotalVoters(votersList);
 
-  it.todo("should handle an array with one voter who has not voted");
+    // Assert
+    expect(result).toBe(0);
+  });
+
+  it("should return the correct number when all have voted", () => {
+    // Arrange
+    const votersList = ALL_VOTERS;
+
+    // Act
+    const result = getTotalVoters(votersList);
+
+    // Assert
+    expect(result).toBe(7);
+  });
+
+  it("should handle an empty array", () => {
+    // Arrange
+    const votersList = EMPTY_VOTERS;
+
+    // Act
+    const result = getTotalVoters(votersList);
+
+    // Assert
+    expect(result).toBe(0);
+  });
+
+  it("should handle an array with one voter who has voted", () => {
+    // Arrange
+    const votersList = SINGLE_NON_VOTER;
+
+    // Act
+    const result = getTotalVoters(votersList);
+
+    // Assert
+    expect(result).toBe(0);
+  });
+
+  it("should handle an array with one voter who has not voted", () => {
+    // Arrange
+    const votersList = SINGLE_NON_VOTER;
+
+    // Act
+    const result = getTotalVoters(votersList);
+
+    // Assert
+    expect(result).toBe(0);
+  });
 });
